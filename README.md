@@ -114,13 +114,13 @@ class Team {
 INSERT INTO MEMBER(MEMBER_ID, TEAM_ID, USERNAME) VALUES ...  
 
 그러나, 조회를 하려고 하면…. 헬게이트 오픈이다. 먼저 멤버와 팀을 조인해 놓고 팀을 조회할 준비를 한다.  
-
+``` SQL
 SELECT M.*, T.* @  
   FROM MEMBER M  
   JOIN TEAM T ON M.TEAM_ID = T.TEAM_ID  
-  
+```
 DB에서 조회해서 객체에 넣으려면..  
-   
+```javascript   
 public Member find(String memberId) {  
   // SQL 실행하고  
   Member member = new Member();  
@@ -132,10 +132,12 @@ public Member find(String memberId) {
   member.setTeam(team);  
   return member;  
 }  
+```
 하지만…. 실무에서는 member와 team의 정보를 모두 가지고 있는 member_team DTO를 가지고, 위와같이 복잡하게 연관관계 매핑을 하지않고 한방 쿼리를 날리면서 작업을 한다...  
   
 비교하기  
 DB에서 조회해오면 JDBC 접근로직 타고 new로 생성하니까 다르다.  
+```javascript
 String memberId = "100";  
 Member member1 = memberDAO.getMember(memberId);  
 Member member2 = memberDAO.getMember(memberId);  
@@ -150,14 +152,16 @@ class MemberDAO {
          return new Member(...);   
     }   
 }  
+```
 비교하기 - 자바 컬렉션에서 조회  
 그런데, 자바 컬렉션에서 조회한다고 가정해보면 두 멤버는 같은 멤버이다.  
+```javascript
 String memberId = "100";  
 Member member1 = list.get(memberId);  
 Member member2 = list.get(memberId);  
   
 member1 == member2; //같다.  
-   
+```
 위의 비교를 통해 둘간의 패러다임 차이를 느낄 수 있다.  
 결론적으로 객체답게 모델링 할수록 매핑 작업만 늘어나게 된다.  
 객체를 자바 컬렉션에 저장하듯이 DB에 저장할 수는 없을까?  
