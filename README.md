@@ -1,7 +1,7 @@
 ## JPA란 무엇인가?  
 JPA (Java Persisitence API)는 하이버네이트(hibernate ) 기반 자바 진영의 ORM 기술 표준.  
 어플리케이션과 JDBC 사이에서 동작  
-(READMEIMAGE/image1.png)  
+![첫번째그림](READMEIMAGE/image1.png)  
     
 ## ORM (Object Relational Mapping)  
 RDB 테이블을 객체지향적으로 사용하기 위한 기술, RDB는 객체지향적(상속, 다형성, 레퍼런스, 오브젝트 등)으로 접근하기  
@@ -37,7 +37,7 @@ JPA를 사용하면 이런 과정을 JPA가 대신 처리
 데이터 접근 추상화와 벤더 독립성  
 데이터베이스 기술에 종속되지 않도록 한다.  
 데이타베이스를 변경하면 JPA에게 다른 데이터베이스를 사용한다고 알려주면 됨.  
-(READMEIMAGE/image2.png)  
+![두번째그림](READMEIMAGE/image2.png)  
 
 
 
