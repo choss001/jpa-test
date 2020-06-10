@@ -66,10 +66,12 @@ Team의 필드는 id, name 이라고 가정
 MEMBER 테이블  
   * MEMBER_ID(PK)  
   * TEAM_ID(FK)  
-  * USERNAME  
+  * USERNAME 
+    
 TEAM 테이블  
   * TEAM_ID(PK)  
   * NAME  
+    
 MEMBER 와 TEAM 은 N:1 관계    
 테이블의 외래키에는 방향성이 없다. 멤버랑 팀 조인가능, 팀과 멤버 조인가능.  
    
