@@ -77,33 +77,37 @@ MEMBER 와 TEAM 은 N:1 관계
 하지만, Member클래스에 Team 객체가 존재하는 것이 더 객체지향적이다 라고 할 수 있다. FK의 값을 넣는것 보단.  
   
 객체답지 않은 모델링  
+```javascript
 class Member {  
   String id;        //MEMBER_ID 컬럼  
   Long teamId;      //TEAM_ID FK 컬럼  
   String username;  //USERNAME 컬럼  
 }  
-  
+```
+```javascript
 class Team {  
   Long id;  
   String name;  
 }  
-  
+```
 테이블 설계에 맞추어 객체를 모델링해서 INSERT 쿼리를 짠다.  
   
 INSERT INTO MEMBER(MEMBER_ID, TEAM_ID, USERNAME) VALUES ...  
   
 반면 객체다운 모델링에서는 아래와 같이 Team이라는 객체 자체를 포함하고 있어서 Member객체에서 Team을 바로 접근할 수 있다.  
-  
+```javascript
 class Member {  
   String id;  
   Team team;        //참조로 연관관계를 맺는다  
   String username;  
 }  
-
+```
+```javascript
 class Team {  
   Long id;        // TEAM_ID PK 사용  
   String name;    // NAME 컬럼 사용  
 }  
+```
 
 테이블에 저장할 때에는 member.getTeam().getId()로 Id를 조회해서 넣었다.  
 
