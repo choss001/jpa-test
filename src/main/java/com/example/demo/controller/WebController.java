@@ -3,17 +3,10 @@ package com.example.demo.controller;
 import java.util.List;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.CommandLineRunner;
-import org.springframework.boot.SpringApplication;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
-import com.example.demo.domain.CommonCode;
 import com.example.demo.domain.Member;
 import com.example.demo.domain.Phone;
 import com.example.demo.repository.MemberRepository;
@@ -57,11 +50,12 @@ public class WebController{
     
   }
   @GetMapping("/get/{id}")
-  public Optional<Member> getName(@PathVariable int id){
+  public String getName(@PathVariable int id){
    Optional<Member> list = memberRepository.findById(id);
-   list.
-   list1.stream();
+   System.out.println(list.get().getPhone());
+   list.get().toString();
+   
 
-   return list;
+   return list.get().toString();
   }
 }
