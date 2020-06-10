@@ -63,12 +63,12 @@ Boss에서 개발한 ORM(Object Relational Mapping) 프레임워크
 객체의 연관관계에는 방향성이 있다. 멤버에서 팀을 조회할 수 있지만, 팀에서 멤버조회는 불가하다.  
 Member의 필드는 id, Team, username  
 Team의 필드는 id, name 이라고 가정  
-MEMBER 테이블  
+###### MEMBER 테이블  
   * MEMBER_ID(PK)  
   * TEAM_ID(FK)  
   * USERNAME 
     
-TEAM 테이블  
+###### TEAM 테이블  
   * TEAM_ID(PK)  
   * NAME  
     
