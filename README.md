@@ -1,5 +1,6 @@
 ## JPA란 무엇인가?  
 JPA (Java Persisitence API)는 하이버네이트(hibernate ) 기반 자바 진영의 ORM 기술 표준.  
+JPA는 ORM을 사용하기 위한 인터페이스를 모아둔 것이며, JPA를 사용하기 위해서는 JPA를 구현한 Hibernate, EclipseLink, DataNucleus 같은 ORM 프레임워크를 사용해야 한다.    
 어플리케이션과 JDBC 사이에서 동작  
 ![첫번째그림](READMEIMAGE/image1.png)  
     
