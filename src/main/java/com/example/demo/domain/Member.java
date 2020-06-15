@@ -12,20 +12,21 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
+import javax.persistence.Table;
 
-@Entity(name = "JPA_MEMBER")
+@Entity
+@Table(name = "jpa_member")
 public class Member {
 
   @Id
   @Column(name = "seq")
   @GeneratedValue(strategy = GenerationType.AUTO)
-  
   private int seq;
   
   @Column(name = "name")
   private String name;
   
-  @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+  @OneToMany(targetEntity=Phone.class, fetch = FetchType.LAZY, cascade = CascadeType.ALL)
   @JoinColumn(name = "member_id")
   private Collection<Phone> phone;
   
