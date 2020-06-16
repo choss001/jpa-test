@@ -20,3 +20,10 @@ spring:
     show-sql: true      #hibernate sql 문 보여주는 옵션
     hibernate:
       ddl-auto: update
+      naming:
+        physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
+
+logging:
+  level:
+    org.springframework.web.client: DEBUG
+    org.hibernate.type : trace

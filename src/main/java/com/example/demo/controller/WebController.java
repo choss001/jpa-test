@@ -15,7 +15,7 @@ import com.example.demo.domain.Member_1;
 import com.example.demo.domain.Phone;
 import com.example.demo.domain.Phone_1;
 import com.example.demo.repository.MemberRepository;
-import com.example.demo.repository.PhoneRepository;
+import com.example.demo.service.RepositoryService;
 
 @RestController
 @RequestMapping("/member")
@@ -26,10 +26,14 @@ public class WebController{
   
   final private JpaRepository<Phone_1, Integer> phoneRepository_1;
   
+  final private RepositoryService repositoryService;
   
-  public WebController(JpaRepository<Member_1, Integer> memberRepository_1, JpaRepository<Phone_1, Integer> phoneRepository_1) {
+  
+  public WebController(JpaRepository<Member_1, Integer> memberRepository_1, JpaRepository<Phone_1, Integer> phoneRepository_1,
+      RepositoryService repositoryService) {
     this.memberRepository_1 = memberRepository_1;
     this.phoneRepository_1 = phoneRepository_1;
+    this.repositoryService = repositoryService;
   }
   
   
@@ -41,20 +45,16 @@ public class WebController{
   
   @Autowired
   private MemberRepository memberRepository;
-  
-  @Autowired
-  private PhoneRepository phoneRepository;
-  
 
   @GetMapping("/test")
   @Transactional
   public List<Member> test(){
     Member first = new Member("Jung");
-    first.addPhone(new Phone("010-XXXX-XXXX", 1));
-    first.addPhone(new Phone("010-YYYY-YYYY", 1));
+    first.addPhone(new Phone("010-XXXX-XXXX"));
+    first.addPhone(new Phone("010-YYYY-YYYY"));
 
     Member second = new Member("Dong");
-    second.addPhone(new Phone("010-ZZZZ-ZZZZ", 1));
+    second.addPhone(new Phone("010-ZZZZ-ZZZZ"));
     
     Member third = new Member("Min");
     
@@ -114,5 +114,31 @@ public class WebController{
    
 
    return list.get().toString();
+  }
+  
+  @GetMapping("/test2")
+  public String test2() {
+
+    System.out.println("#####################deleteAll#####################");
+    repositoryService.deleteAll();
+    System.out.println("#####################deleteAll#####################");
+    System.out.println("#####################saveMeber#####################");
+    repositoryService.saveMember();
+    System.out.println("#####################saveMeber#####################");
+    System.out.println("#####################print#####################");
+    repositoryService.print();
+    System.out.println("#####################print#####################");
+    System.out.println("#####################lazyPrint#####################");
+    repositoryService.lazyPrint();
+    System.out.println("#####################lazyPrint#####################");
+    System.out.println("#####################lazyPrint2#####################");
+    repositoryService.lazyPrint2();
+    System.out.println("#####################lazyPrint2#####################");
+    
+    return "Success";
+  }
+  @GetMapping("/test3")
+  public String test3() {
+    return "Success";
   }
 }
