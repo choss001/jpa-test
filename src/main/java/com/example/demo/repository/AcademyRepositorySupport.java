@@ -2,9 +2,12 @@ package com.example.demo.repository;
 
 import java.util.List;
 import org.springframework.data.jpa.repository.support.QuerydslRepositorySupport;
+import org.springframework.stereotype.Repository;
 import com.example.demo.domain.Academy;
+import com.example.demo.domain.QAcademy;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 
+@Repository
 public class AcademyRepositorySupport extends QuerydslRepositorySupport{
 
   private final JPAQueryFactory queryFactory;
@@ -15,10 +18,10 @@ public class AcademyRepositorySupport extends QuerydslRepositorySupport{
   }
   
   public List<Academy> findByName(String name){
-    return null;
-//    return queryFactory
-//          .selectFrom(academy)
-//          .where(academy.name.eq(name))
-//          .fetch();
+    return queryFactory
+          .selectFrom(QAcademy.academy)
+          .where(QAcademy.academy.name.eq(name))
+          .fetch();
   }
 }
+

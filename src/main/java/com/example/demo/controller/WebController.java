@@ -10,10 +10,13 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import com.example.demo.domain.Academy;
 import com.example.demo.domain.Member;
 import com.example.demo.domain.Member_1;
 import com.example.demo.domain.Phone;
 import com.example.demo.domain.Phone_1;
+import com.example.demo.repository.AcademyRepository;
+import com.example.demo.repository.AcademyRepositorySupport;
 import com.example.demo.repository.MemberRepository;
 import com.example.demo.service.RepositoryService;
 
@@ -21,6 +24,11 @@ import com.example.demo.service.RepositoryService;
 @RequestMapping("/member")
 public class WebController{
   
+  @Autowired
+  private AcademyRepository academyRepository;
+  
+  @Autowired
+  private AcademyRepositorySupport academyRepositorySupport;
   
   final private JpaRepository<Member_1, Integer> memberRepository_1;
   
@@ -140,5 +148,18 @@ public class WebController{
   @GetMapping("/test3")
   public String test3() {
     return "Success";
+  }
+  
+  @GetMapping("/test4")
+  public List<Academy> QueryDSL_test4() {
+    String name = "JoSeongSik";
+    String address = "choss002@gamil.com";
+    academyRepository.save(new Academy(name, address));
+    
+    List<Academy> result = academyRepositorySupport.findByName(name);
+    
+    System.out.println("result" + result);
+  
+    return result;
   }
 }

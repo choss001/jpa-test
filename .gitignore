@@ -52,3 +52,5 @@ bin/main/com/example/demo/repository/PhoneRepository_1.class
 bin/main/com/example/demo/repository/PhoneRepository_2.class
 bin/main/com/example/demo/service/RepositoryService.class
 bin/main/com/example/demo/service/serviceImpl/RepositoryServiceImpl.class
+bin/
+src/main/generated/
