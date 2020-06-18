@@ -19,8 +19,8 @@ public class AcademyRepositorySupport extends QuerydslRepositorySupport{
   
   public List<Academy> findByName(String name){
     return queryFactory
-          .selectFrom(QAcademy.academy)
-          .where(QAcademy.academy.name.eq(name))
+          .selectFrom(new QAcademy("academy"))
+          .where(new QAcademy("academy").name.eq(name))
           .fetch();
   }
 }
