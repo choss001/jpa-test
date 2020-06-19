@@ -4,7 +4,6 @@ import java.util.List;
 import java.util.Optional;
 import javax.transaction.Transactional;
 import org.hibernate.tool.hbm2ddl.SchemaExport;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -24,11 +23,9 @@ import com.example.demo.service.RepositoryService;
 @RequestMapping("/member")
 public class WebController{
   
-  @Autowired
-  private AcademyRepository academyRepository;
+  final private AcademyRepository academyRepository;
   
-  @Autowired
-  private AcademyRepositorySupport academyRepositorySupport;
+  final private AcademyRepositorySupport academyRepositorySupport;
   
   final private JpaRepository<Member_1, Integer> memberRepository_1;
   
@@ -36,23 +33,19 @@ public class WebController{
   
   final private RepositoryService repositoryService;
   
+  final private MemberRepository memberRepository;
+  
   
   public WebController(JpaRepository<Member_1, Integer> memberRepository_1, JpaRepository<Phone_1, Integer> phoneRepository_1,
-      RepositoryService repositoryService) {
+      RepositoryService repositoryService, AcademyRepository academyRepository, AcademyRepositorySupport academyRepositorySupport,
+      MemberRepository memberRepository) {
     this.memberRepository_1 = memberRepository_1;
     this.phoneRepository_1 = phoneRepository_1;
     this.repositoryService = repositoryService;
+    this.academyRepository = academyRepository;
+    this.academyRepositorySupport = academyRepositorySupport;
+    this.memberRepository = memberRepository;
   }
-  
-  
-  
-  
-  
-
-  
-  
-  @Autowired
-  private MemberRepository memberRepository;
 
   @GetMapping("/test")
   @Transactional
@@ -107,9 +100,6 @@ public class WebController{
     for(Phone_1 e : phone) {
       System.out.println(e.toString() + " "+ e.getMember().toString());
     }
-
-    
-
      
     return "Success";
 
@@ -119,7 +109,6 @@ public class WebController{
    Optional<Member> list = memberRepository.findById(id);
    System.out.println(list.get().getPhone());
    list.get().toString();
-   
 
    return list.get().toString();
   }
@@ -156,9 +145,8 @@ public class WebController{
     String address = "choss002@gamil.com";
     academyRepository.save(new Academy(name, address));
     
-    List<Academy> result = academyRepositorySupport.findByName(name);
-    
-    System.out.println("result" + result);
+//    List<Academy> result = academyRepositorySupport.findByName(name);
+    List<Academy> result = academyRepository.findByName(name);
   
     return result;
   }

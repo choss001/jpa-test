@@ -13,11 +13,11 @@ spring:
     properties:
       hibernate:
        ddl-auto: create
-       show_sql: true
+       show_sql: false
        format_sql: true
        ddl_sql: true
     generate-ddl: false #DDL : CRATE, DROP, ALTER, TRUNCATE     #DML : SELECT, INSERT, UPATE, DELETE  #서버 시작 지점에 DDL문을 생성하여 DB에 적용한다.
-    show-sql: true      #hibernate sql 문 보여주는 옵션
+    show-sql: true #hibernate sql 문 보여주는 옵션
     hibernate:
       ddl-auto: update
       naming:

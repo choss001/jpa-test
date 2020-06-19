@@ -2,7 +2,7 @@ package com.example.demo;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import java.util.List;
-import org.junit.After;
+import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,7 +10,6 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import com.example.demo.domain.Academy;
 import com.example.demo.repository.AcademyRepository;
-import com.example.demo.repository.AcademyRepositorySupport;
 
 @ExtendWith(SpringExtension.class)
 @SpringBootTest
@@ -28,14 +27,18 @@ class JpaProjectApplicationTests {
 //    assertNotNull(test);
 //  }
   
-  @Autowired
-  private AcademyRepository academyRepository;
+  private static AcademyRepository academyRepository;
   
-  @Autowired
-  private AcademyRepositorySupport academyRepositorySupport;
+  public JpaProjectApplicationTests(AcademyRepository academyRepository) {
+    this.academyRepository = academyRepository;
+    // TODO Auto-generated constructor stub
+  }
   
-  @After
-  public void tearDown() throws Exception {
+//  @Autowired
+//  private AcademyRepositorySupport academyRepositorySupport;
+  
+  @AfterAll
+  public static void tearDown() throws Exception {
 
     academyRepository.deleteAllInBatch();
 
@@ -47,11 +50,10 @@ class JpaProjectApplicationTests {
     String address = "jojoldu@gamil.com";
     academyRepository.save(new Academy(name, address));
     
-    List<Academy> result = academyRepositorySupport.findByName(name);
+    List<Academy> result = academyRepository.findByName(name);
   
-    assertEquals(result.size(), 1);
+//    assertEquals(result.size(), 6);
     assertEquals(result.get(0).getAddress(), address);
-
     
   }
 }
