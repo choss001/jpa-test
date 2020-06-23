@@ -20,7 +20,7 @@ import lombok.ToString;
 public class CommonGroupCode {
   
   @Id
-  @GeneratedValue
+//  @GeneratedValue
   @Column(name = "GROUP_CD")
   private String groupCd;
   

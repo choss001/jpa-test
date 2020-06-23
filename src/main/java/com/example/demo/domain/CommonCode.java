@@ -1,5 +1,6 @@
 package com.example.demo.domain;
 
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import java.sql.Date;
 import javax.persistence.Column;
 import javax.persistence.EmbeddedId;
@@ -13,7 +14,7 @@ import lombok.ToString;
 
 @NoArgsConstructor
 @Entity
-@ToString
+//@ToString
 @Table( name = "COMMON_CD")
 public class CommonCode {
   
@@ -58,9 +59,9 @@ public class CommonCode {
   
 //  @MapsId("groupId")
   @JsonBackReference        //참조가 되는 뒷부분을 의미하며, 직렬화를 수행하지 않는다. (엔티티의 필드가 다른 엔티티를 참조하고 무한루프  방지)
-  @ToString.Exclude
+//  @ToString.Exclude
   @ManyToOne(optional = false)
-  @JoinColumn(name = "GROUP_CD",updatable = false, insertable = false)
+  @JoinColumn(name = "GROUP_CD",updatable = false, insertable = false, nullable = true)
   private CommonGroupCode commonGroupCode;
   
   
@@ -142,4 +143,13 @@ public class CommonCode {
   public void setCommonGroupCode(CommonGroupCode commonGroupCode) {
     this.commonGroupCode = commonGroupCode;
   }
+  @Override
+  public String toString() {
+    return "CommonCode [commonCodePk=" + commonCodePk.getCd()+"commonCodePk="+commonCodePk.getGroupCd() + ", cdName=" + cdName + ", cdDesc=" + cdDesc
+        + ", cdCharVal1=" + cdCharVal1 + ", cdCharVal2=" + cdCharVal2 + ", cdCharVal3=" + cdCharVal3
+        + ", cdNumVal1=" + cdNumVal1 + ", cdNumVal2=" + cdNumVal2 + ", cdNumVal3=" + cdNumVal3
+        + ", sortNum=" + sortNum + ", useYn=" + useYn + ", createDateTime=" + createDateTime
+        + ", modifyDateTime=" + modifyDateTime+"]";
+  }
+  
 }

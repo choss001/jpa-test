@@ -1,6 +1,9 @@
 package com.example.demo.service.serviceImpl;
 
 import java.util.List;
+import java.util.NoSuchElementException;
+import java.util.Optional;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import com.example.demo.domain.CommonCode;
 import com.example.demo.domain.CommonGroupCode;
@@ -15,6 +18,10 @@ public class CommonCodeServiceImpl implements CommonCodeService{
   
   private final CommonGroupCodeRepository commonGroupCodeRepository;
   
+  public CommonGroupCode getGroupCode(String GroupCode) {
+    return commonGroupCodeRepository.findById(GroupCode).orElseThrow(() -> new NoSuchElementException());
+    
+  }
   public CommonCodeServiceImpl(CommonCodeRepository commonCodeRepository, CommonGroupCodeRepository commonGroupCodeRepository) {
     this.commonCodeRepository = commonCodeRepository;
     this.commonGroupCodeRepository = commonGroupCodeRepository;
@@ -23,7 +30,11 @@ public class CommonCodeServiceImpl implements CommonCodeService{
   @Override
   public List<CommonGroupCode> getCommonGroupCodeList() {
     List<CommonGroupCode> commonGroupCodes = commonGroupCodeRepository.findAll();
+    System.out.println("444444444 : "+commonGroupCodes);
     System.out.println("##########################################################################################");
+    for(CommonGroupCode commonGroupCode : commonGroupCodes) {
+      System.out.println("%%%%%%%%%%%%%%%%%%%%%%%%%%%%%"+commonGroupCodes+"%%%%%%%%%%%%%%%%%%%%%%%%%");
+    }
     for(CommonGroupCode commonGroupCode : commonGroupCodes ) {
       for(CommonCode commonCode : commonGroupCode.getCommonCode()) {
         System.out.println("$$$$$"+commonGroupCode.getGroupCd() + " " + commonCode.toString()+"$$$$$");
@@ -38,5 +49,23 @@ public class CommonCodeServiceImpl implements CommonCodeService{
     return commonCodeRepository.findAll();
   }
   
+  @Override
+  public String setCommonGroupCode(CommonGroupCode commonGroupCode) {
+    commonGroupCodeRepository.save(commonGroupCode);
+    return null;
+  }
+  
+  @Override
+  public String deleteCommonGroupCode(String GroupCode) {
+    commonGroupCodeRepository.deleteById(GroupCode);
+    return "Success";
+  }
+  
+  @Override
+  public String updateCommonGroupCode(CommonGroupCode commonGroupCode) {
+    CommonGroupCode groupCode = getGroupCode(commonGroupCode.getGroupCd());
+    commonGroupCodeRepository.save(commonGroupCode);
+    return "Success";
+  }
 
 }

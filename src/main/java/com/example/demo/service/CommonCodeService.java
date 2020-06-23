@@ -9,5 +9,11 @@ public interface CommonCodeService {
   public List<CommonGroupCode> getCommonGroupCodeList();
   
   public List<CommonCode> getCommonCode();
+  
+  public String setCommonGroupCode(CommonGroupCode commonGroupCode);
+  
+  public String deleteCommonGroupCode(String GroupCode);
+  
+  public String updateCommonGroupCode(CommonGroupCode commonGroupCode);
 
 }
