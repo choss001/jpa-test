@@ -18,13 +18,13 @@ public class CommonCodeServiceImpl implements CommonCodeService{
   
   private final CommonGroupCodeRepository commonGroupCodeRepository;
   
-  public CommonGroupCode getGroupCode(String GroupCode) {
-    return commonGroupCodeRepository.findById(GroupCode).orElseThrow(() -> new NoSuchElementException());
-    
-  }
   public CommonCodeServiceImpl(CommonCodeRepository commonCodeRepository, CommonGroupCodeRepository commonGroupCodeRepository) {
     this.commonCodeRepository = commonCodeRepository;
     this.commonGroupCodeRepository = commonGroupCodeRepository;
+  }
+
+  public CommonGroupCode getGroupCode(String GroupCode) {
+    return commonGroupCodeRepository.findById(GroupCode).orElseThrow(() -> new NoSuchElementException());
   }
 
   @Override
@@ -57,13 +57,14 @@ public class CommonCodeServiceImpl implements CommonCodeService{
   
   @Override
   public String deleteCommonGroupCode(String GroupCode) {
+    getGroupCode(GroupCode);
     commonGroupCodeRepository.deleteById(GroupCode);
     return "Success";
   }
   
   @Override
   public String updateCommonGroupCode(CommonGroupCode commonGroupCode) {
-    CommonGroupCode groupCode = getGroupCode(commonGroupCode.getGroupCd());
+    getGroupCode(commonGroupCode.getGroupCd());
     commonGroupCodeRepository.save(commonGroupCode);
     return "Success";
   }
