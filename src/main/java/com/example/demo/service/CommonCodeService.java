@@ -7,6 +7,8 @@ import com.example.demo.domain.CommonGroupCode;
 public interface CommonCodeService {
   
   public List<CommonGroupCode> getCommonGroupCodeList();
+
+  public List<CommonGroupCode> getCommomGroupCodeListQueryDSL(String groupCd);
   
   public List<CommonCode> getCommonCode();
   

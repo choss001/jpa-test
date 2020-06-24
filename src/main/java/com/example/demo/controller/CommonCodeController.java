@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.RestController;
 import com.example.demo.domain.CommonCode;
 import com.example.demo.domain.CommonGroupCode;
 import com.example.demo.service.CommonCodeService;
-import com.example.demo.service.serviceImpl.CommonCodeServiceImpl;
 
 @RestController
 @RequestMapping(value = "/common")
@@ -31,6 +30,10 @@ public class CommonCodeController {
   @GetMapping(value = "/group")
   public List<CommonGroupCode> getGroupList() {
     return commonCodeService.getCommonGroupCodeList();
+  }
+  @GetMapping(value = "/groupDSL")
+  public List<CommonGroupCode> getCommomGroupCodeListQueryDSL(@RequestParam("groupCd") String groupCd){
+    return commonCodeService.getCommomGroupCodeListQueryDSL(groupCd);
   }
   @PostMapping(value = "/groupInsert")
   public String setGroupCode(@RequestBody CommonGroupCode commonGroupCode) {

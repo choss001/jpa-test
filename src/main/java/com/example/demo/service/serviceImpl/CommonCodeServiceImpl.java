@@ -69,4 +69,10 @@ public class CommonCodeServiceImpl implements CommonCodeService{
     return "Success";
   }
 
+  @Override
+  public List<CommonGroupCode> getCommomGroupCodeListQueryDSL(String groupCd) {
+    // TODO Auto-generated method stub
+    return commonGroupCodeRepository.getCommomGroupCodeListQueryDSL(groupCd);
+  }
+
 }
