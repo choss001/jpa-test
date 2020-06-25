@@ -3,6 +3,8 @@ package com.example.demo.service.serviceImpl;
 import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.Optional;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import com.example.demo.domain.CommonCode;
@@ -17,6 +19,9 @@ public class CommonCodeServiceImpl implements CommonCodeService{
   private final CommonCodeRepository commonCodeRepository;
   
   private final CommonGroupCodeRepository commonGroupCodeRepository;
+  
+  @PersistenceContext
+  private EntityManager entityManager;
   
   public CommonCodeServiceImpl(CommonCodeRepository commonCodeRepository, CommonGroupCodeRepository commonGroupCodeRepository) {
     this.commonCodeRepository = commonCodeRepository;
@@ -72,7 +77,14 @@ public class CommonCodeServiceImpl implements CommonCodeService{
   @Override
   public List<CommonGroupCode> getCommomGroupCodeListQueryDSL(String groupCd) {
     // TODO Auto-generated method stub
+    CommonGroupCode commonGroupCode = new CommonGroupCode();
+    entityManager.detach(commonGroupCode);
+    System.out.println(entityManager.find(commonGroupCode.getClass(), groupCd));
     return commonGroupCodeRepository.getCommomGroupCodeListQueryDSL(groupCd);
   }
 
+  @Override
+  public CommonGroupCode getCommonGroupCodeEntityManager(String groupCd) {
+    return entityManager.find(CommonGroupCode.class, groupCd);
+  }
 }

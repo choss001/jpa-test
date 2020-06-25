@@ -55,4 +55,9 @@ public class CommonCodeController {
   public List<CommonCode> getCommonList() {
     return commonCodeService.getCommonCode();
   }
+  
+  @GetMapping(value = "/groupEntityManager")
+  public CommonGroupCode getCommonGroupEntityManager(String groupCd) {
+    return commonCodeService.getCommonGroupCodeEntityManager(groupCd);
+  }
 }

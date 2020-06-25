@@ -10,6 +10,8 @@ public interface CommonCodeService {
 
   public List<CommonGroupCode> getCommomGroupCodeListQueryDSL(String groupCd);
   
+  public CommonGroupCode getCommonGroupCodeEntityManager(String groupCd);
+
   public List<CommonCode> getCommonCode();
   
   public String setCommonGroupCode(CommonGroupCode commonGroupCode);

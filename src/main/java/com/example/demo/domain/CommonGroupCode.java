@@ -5,6 +5,7 @@ import java.util.Collection;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
@@ -44,7 +45,7 @@ public class CommonGroupCode {
   
 //  @MapsId("commonCodePk")
   @JsonManagedReference             //참조가 되는 앞부분을 의미하며, 정상적으로 직렬화를 수행한다.    (엔티티의 필드가 다른 엔티티를 참조하고 무한루프  방지)
-  @OneToMany(cascade = CascadeType.ALL, mappedBy = "commonCodePk.groupCd")
+  @OneToMany(cascade = CascadeType.ALL, mappedBy = "commonCodePk.groupCd", fetch = FetchType.LAZY)
 //  @JoinColumns({
 //    @JoinColumn(name = "GROUP_CD", updatable = false, insertable = false)
 //  })
