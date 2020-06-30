@@ -32,13 +32,14 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-jdbc'
     compileOnly 'org.projectlombok:lombok:1.16.6'
 	implementation 'org.springframework.boot:spring-boot-starter-web'
-    implementation 'com.querydsl:querydsl-jpa'
+//    implementation 'com.querydsl:querydsl-jpa'
     implementation 'org.hamcrest:hamcrest-library'          //Junit 테스트
 //    implementation 'junit:junit:4.4'
 //    implementation 'org.hsqldb:hsqldb'        //내장 DB
     implementation 'org.springframework.boot:spring-boot-devtools'
     compile("com.querydsl:querydsl-jpa")
     compile("com.querydsl:querydsl-apt")
+    implementation 'org.json:json:20190722'     //개인적인 테스트
 //    implementation 'org.apache.logging.log4j:log4j-slf4j-impl:2.10.0'
 	runtimeOnly 'mysql:mysql-connector-java'
     testImplementation('org.springframework.boot:spring-boot-starter-test') {
@@ -58,10 +59,10 @@ test {
 	useJUnitPlatform()
 }
 
-@Incubating
-public void useJUnitPlatform() {
-    useJUnitPlatform(Actions.<JUnitPlatformOptions>doNothing());
-}
+//@Incubating   주석 처리한 후 테스트 하고 잘 돌아가면 삭제
+//public void useJUnitPlatform() {
+//    useJUnitPlatform(Actions.<JUnitPlatformOptions>doNothing());
+//}
 
 querydsl {
   library = "com.querydsl:querydsl-apt"

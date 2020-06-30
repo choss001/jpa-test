@@ -19,5 +19,7 @@ public interface CommonCodeService {
   public String deleteCommonGroupCode(String GroupCode);
   
   public String updateCommonGroupCode(CommonGroupCode commonGroupCode);
+  
+  public String insertCommonCode(CommonCode commonCode);
 
 }
